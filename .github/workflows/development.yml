@@ -1,16 +1,15 @@
-name: Main workflow
+name: Production workflow
 
 on:
   pull_request:
     branches:
-      - main
-    types: [opened, synchronize, reopened]
+      - development
   push:
     branches:
-      - main
+      - development
 
 jobs:
-  test:
+  build_deploy:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -50,4 +49,4 @@ jobs:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
         with:
-          args: deploy -m 'v${{ steps.package-version.outputs.current-version}} ・ ${{ github.head_ref }}'
+          args: deploy -m --prod
