@@ -38,14 +38,14 @@ export default function Post({
   return (
     <Layout>
       <Head>
-        <title>{postData?.title}</title>
+        <title>{postData.title}</title>
       </Head>
       <article>
-        <h1 className={utilStyles.headingXl}>{postData?.title}</h1>
+        <h1 className={utilStyles.headingXl}>{postData.title}</h1>
         <div className={utilStyles.lightText}>
-          <Date dateString={postData?.date} />
+          <Date dateString={postData.date} />
         </div>
-        <PostPhoto title={postData?.title} url={postData?.coverImage.url} slug={postData?.slug}/>
+        <PostPhoto title={postData.title} url={postData.coverImage.url} slug={postData.slug}/>
         {documentToReactComponents(postData?.content.json)}
       </article>
     </Layout>
