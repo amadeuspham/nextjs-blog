@@ -5,6 +5,7 @@ import Link from 'next/link'
 import Date from '../components/date'
 import { GetStaticProps } from 'next'
 import { getAllPostsForHome } from '../lib/api'
+import Image from 'next/image'
 
 export default function Home({
   preview,
@@ -16,8 +17,10 @@ export default function Home({
     title: string
     slug: string
     excerpt: string
+    coverImage: any
   }[]
 }) {
+  console.log(allPostsData[0].coverImage)
   return (
     <Layout home>
       <Head>
@@ -33,19 +36,29 @@ export default function Home({
       <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
         <h2 className={utilStyles.headingLg}>Blog</h2>
         <ul className={utilStyles.list}>
-          {allPostsData.map(({ slug, date, title, excerpt }) => (
+          {allPostsData.map(({ slug, date, title, excerpt, coverImage }) => (
             <li className={utilStyles.listItem} key={slug}>
-              <Link href={`/posts/${slug}`}>
-                <a>{title}</a>
-              </Link>
-              <br />
-              <small className={utilStyles.lightTextItalic}>
-                {excerpt}
-              </small>
-              <br />
-              <small className={utilStyles.lightText}>
-                <Date dateString={date} />
-              </small>
+              <div className="flex flex-row">
+                <Image
+                  src={coverImage.url}
+                  alt="Picture of the author"
+                  width={100}
+                  height={100}
+                />
+                <div className="ml-4">
+                  <Link href={`/posts/${slug}`}>
+                    <a>{title}</a>
+                  </Link>
+                  <br />
+                  <small className={utilStyles.lightTextItalic}>
+                    {excerpt}
+                  </small>
+                  <br />
+                  <small className={utilStyles.lightText}>
+                    <Date dateString={date} />
+                  </small>
+                </div>
+              </div>
             </li>
           ))}
         </ul>
