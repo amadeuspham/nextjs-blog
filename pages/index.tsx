@@ -5,7 +5,6 @@ import Link from 'next/link'
 import Date from '../components/date'
 import { GetStaticProps } from 'next'
 import { getAllPostsForHome } from '../lib/api'
-import Image from 'next/image'
 
 export default function Home({
   preview,
@@ -20,7 +19,6 @@ export default function Home({
     coverImage: any
   }[]
 }) {
-  console.log(allPostsData[0].coverImage)
   return (
     <Layout home>
       <Head>
@@ -39,7 +37,7 @@ export default function Home({
           {allPostsData.map(({ slug, date, title, excerpt, coverImage }) => (
             <li className={utilStyles.listItem} key={slug}>
               <div className="flex flex-row">
-                <Image
+                <img
                   src={coverImage.url}
                   alt="Picture of the author"
                   width={100}
