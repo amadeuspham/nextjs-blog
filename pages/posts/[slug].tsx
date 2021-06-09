@@ -4,7 +4,7 @@ import Date from '../../components/date'
 import PostPhoto from '../../components/post-photo'
 import Head from 'next/head'
 import utilStyles from '../../styles/utils.module.css'
-import { GetStaticProps, GetStaticPaths, GetServerSideProps } from 'next'
+import { GetStaticProps, GetStaticPaths } from 'next'
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer'
 
 export const getStaticProps: GetStaticProps = async ({ params, preview = false }) => {
@@ -16,11 +16,11 @@ export const getStaticProps: GetStaticProps = async ({ params, preview = false }
   }
 }
 
-export async function getStaticPaths() {
+export const getStaticPaths: GetStaticPaths = async () => {
   const allPosts = await getAllPostsWithSlug()
   return {
     paths: allPosts?.map(({ slug }) => `/posts/${slug}`) ?? [],
-    fallback: true,
+    fallback: false,
   }
 }
 
