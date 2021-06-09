@@ -33,9 +33,8 @@ export default function Home({
       </section>
       <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
         <h2 className={utilStyles.headingLg}>Blog</h2>
-        <ul className={utilStyles.list}>
           {allPostsData.map(({ slug, date, title, excerpt, coverImage }) => (
-            <li className={utilStyles.listItem} key={slug}>
+            <div className={utilStyles.listItem} key={slug}>
               <div className="flex flex-row">
                 <img
                   src={coverImage.url}
@@ -57,9 +56,8 @@ export default function Home({
                   </small>
                 </div>
               </div>
-            </li>
+            </div>
           ))}
-        </ul>
       </section>
     </Layout>
   )
