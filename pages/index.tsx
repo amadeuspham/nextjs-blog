@@ -34,7 +34,7 @@ export default function Home({
       <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
         <h2 className={utilStyles.headingLg}>Blog</h2>
           {allPostsData.map(({ slug, date, title, excerpt, coverImage }) => (
-            <div className={utilStyles.listItem} key={slug}>
+            <div className="mb-4" key={slug}>
               <div className="flex flex-row">
                 <img
                   src={coverImage.url}
