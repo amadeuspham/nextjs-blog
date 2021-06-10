@@ -3,7 +3,7 @@ import Layout, { siteTitle } from '../components/layout'
 import utilStyles from '../styles/utils.module.css'
 import Link from 'next/link'
 import Date from '../components/date'
-import { GetStaticProps } from 'next'
+import { GetServerSideProps } from 'next'
 import { getAllPostsForHome } from '../lib/api'
 
 export default function Home({
@@ -33,9 +33,8 @@ export default function Home({
       </section>
       <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
         <h2 className={utilStyles.headingLg}>Blog</h2>
-        <ul className={utilStyles.list}>
           {allPostsData.map(({ slug, date, title, excerpt, coverImage }) => (
-            <li className={utilStyles.listItem} key={slug}>
+            <div className="mb-4" key={slug}>
               <div className="flex flex-row">
                 <img
                   src={coverImage.url}
@@ -57,19 +56,14 @@ export default function Home({
                   </small>
                 </div>
               </div>
-            </li>
+            </div>
           ))}
-        </ul>
       </section>
     </Layout>
   )
 }
 
-type GetStaticPropsParams = {
-	preview: boolean
-}
-
-export const getStaticProps: GetStaticProps = async ({preview = false}: GetStaticPropsParams) => {
+export const getServerSideProps: GetServerSideProps = async ({preview = false}) => {
   const allPostsData = (await getAllPostsForHome(preview)) ?? []
   return {
     props: { preview, allPostsData },
