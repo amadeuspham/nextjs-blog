@@ -45,7 +45,7 @@ function extractPostEntries(fetchResponse) {
   return fetchResponse?.data?.blogPostCollection?.items
 }
 
-export async function getPreviewPostBySlug(slug: string) {
+export async function getPreviewPostBySlug(slug: string | string[]) {
   const entry = await fetchGraphQL(
     `query {
       blogPostCollection(where: { slug: "${slug}" }, preview: true, limit: 1) {
@@ -73,7 +73,7 @@ export async function getAllPostsForHome(preview: boolean) {
   return extractPostEntries(entries)
 }
 
-export async function getPostBySlug(slug: string, preview: boolean) {
+export async function getPostBySlug(slug: string | string[], preview: boolean) {
   const entry = await fetchGraphQL(
     `query {
       blogPostCollection(where: { slug: "${slug}" }, preview: ${
