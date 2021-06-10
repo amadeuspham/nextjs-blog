@@ -20,7 +20,7 @@ export default function Home({
   }[]
 }) {
   return (
-    <Layout home>
+    <Layout home preview={preview}>
       <Head>
         <title>{siteTitle}</title>
       </Head>
