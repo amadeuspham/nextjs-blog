@@ -24,7 +24,8 @@ export const getServerSideProps: GetServerSideProps = async ({ params, preview =
 }
 
 export default function Post({
-  postData
+  postData,
+  preview
 }: {
   postData: {
     slug: string
@@ -32,10 +33,11 @@ export default function Post({
     date: string
     content: any
     coverImage: any
-  }
+  },
+  preview: boolean
 }) {
   return (
-    <Layout>
+    <Layout preview={preview}>
       <Head>
         <title>{postData.title}</title>
       </Head>
