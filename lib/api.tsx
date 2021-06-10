@@ -19,7 +19,7 @@ content {
 }
 `
 
-async function fetchGraphQL(query, preview = false) {
+async function fetchGraphQL(query: string, preview: boolean) {
   return fetch(
     `https://graphql.contentful.com/content/v1/spaces/${process.env.CONTENTFUL_SPACE_ID}`,
     {
@@ -45,7 +45,7 @@ function extractPostEntries(fetchResponse) {
   return fetchResponse?.data?.blogPostCollection?.items
 }
 
-export async function getPreviewPostBySlug(slug) {
+export async function getPreviewPostBySlug(slug: string) {
   const entry = await fetchGraphQL(
     `query {
       blogPostCollection(where: { slug: "${slug}" }, preview: true, limit: 1) {
@@ -57,19 +57,6 @@ export async function getPreviewPostBySlug(slug) {
     true
   )
   return extractPost(entry)
-}
-
-export async function getAllPostsWithSlug() {
-  const entries = await fetchGraphQL(
-    `query {
-      blogPostCollection(where: { slug_exists: true }, order: date_DESC) {
-        items {
-          ${POST_GRAPHQL_FIELDS}
-        }
-      }
-    }`
-  )
-  return extractPostEntries(entries)
 }
 
 export async function getAllPostsForHome(preview: boolean) {
@@ -86,7 +73,7 @@ export async function getAllPostsForHome(preview: boolean) {
   return extractPostEntries(entries)
 }
 
-export async function getPostBySlug(slug, preview) {
+export async function getPostBySlug(slug: string, preview: boolean) {
   const entry = await fetchGraphQL(
     `query {
       blogPostCollection(where: { slug: "${slug}" }, preview: ${

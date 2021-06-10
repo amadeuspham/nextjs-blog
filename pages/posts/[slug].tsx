@@ -45,7 +45,7 @@ export default function Post({
           <Date dateString={postData.date} />
         </div>
         <PostPhoto title={postData.title} url={postData.coverImage.url} slug={postData.slug}/>
-        {documentToReactComponents(postData?.content.json)}
+        {documentToReactComponents(postData.content.json)}
       </article>
     </Layout>
   )
