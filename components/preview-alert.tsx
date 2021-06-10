@@ -4,7 +4,8 @@ export default function PreviewAlert() {
   return (
     <div
       className={cn('border-b',
-        'bg-accent-7 border-accent-7 text-white'
+        'bg-accent-7 border-accent-7',
+        'mb-4'
       )}
     >
       <div className="py-2 text-center text-sm">
